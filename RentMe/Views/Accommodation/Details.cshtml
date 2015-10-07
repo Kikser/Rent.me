@@ -1,0 +1,61 @@
+﻿@model RentMe.Models.Entities.Accommodation
+
+@{
+    ViewBag.Title = "Details";
+}
+<link href="~/Content/details.css" rel="stylesheet" />
+<div class="apartment_wrapper">
+    @if (Model.Images.Any(f => f.FileType == RentMe.Models.Enums.FileType.Avatar))
+    {
+        <div class="image_wrapper">
+            <img src="~/File?id=@Model.Images.First(f => f.FileType == RentMe.Models.Enums.FileType.Avatar).ImageId" alt="avatar" />
+        </div>
+    }
+    <div class="info">
+
+        <div class="details_info">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @id = "label" })
+
+            @Html.DisplayFor(model => model.Name, new { @class = "display" })
+        </div>
+        <div class="details_info">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @id = "label" })
+
+            @Html.DisplayFor(model => model.Price, new { @id = "display" })
+        </div>
+        <div class="details_info">
+            @Html.LabelFor(model => model.StreetAddress, htmlAttributes: new { @id = "label" })
+
+            @Html.DisplayFor(model => model.StreetAddress, new { @id = "display" })
+        </div>
+        <div class="details_info">
+            @Html.LabelFor(model => model.City, htmlAttributes: new { @id = "label" })
+
+            @Html.DisplayFor(model => model.City, new { @id = "display" })
+        </div>
+        <div class="details_info">
+            @Html.LabelFor(model => model.Rents, htmlAttributes: new { @id = "label" })
+
+            @Html.DisplayFor(model => model.Rents, new { @id = "display" })
+        </div>
+        @*<div class="details_info">
+
+            </div>*@
+        <div class="details_info">
+            <button class="btn popup-btn" id="bounce">Reserve</button>
+        </div>
+    </div>
+    <div class="popup-wrap">
+        <div class="popup-box">
+            <h2>Title of Popup</h2>
+            <h3>Tuka ke doaga datepickerot.</h3>
+            <a class="close-btn popup-close" href="#">x</a>
+        </div>
+    </div>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/popUp.js"></script>

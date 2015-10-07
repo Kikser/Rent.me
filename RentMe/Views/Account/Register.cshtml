@@ -1,0 +1,31 @@
+﻿@model RentMe.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+<link href="~/Content/loginRegister.css" rel="stylesheet" />
+<div class="signup-wrap">
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <p class="username">
+        @Html.TextBoxFor(m => m.UserName, new { @class = "input", @id = "user_login", @placeholder = "Username" })
+    </p>
+    <p>
+        @Html.TextBoxFor(m => m.Email, new { @class = "input", @id = "user_login", @placeholder = "Email" })
+    </p>
+    <p>
+        @Html.PasswordFor(m => m.Password, new { @class = "input", @id = "user_login", @placeholder = "Password" })
+    </p>
+    <p>
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input", @id = "user_login", @placeholder = "Confirm Password" })
+    </p>
+    <p class="button">
+        <input type="submit" class="button button-primary button-large" id="wp-submit" name="wp-submit" value="Register"/>
+    </p>
+    }
+</div>
+    @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    }

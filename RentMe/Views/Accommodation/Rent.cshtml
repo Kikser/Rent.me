@@ -1,0 +1,47 @@
+﻿@model IEnumerable<RentMe.Models.Entities.Accommodation>
+
+@{
+    ViewBag.Title = "Rent";
+}
+<link href="~/Content/item.css" rel="stylesheet" />
+<link href="~/Content/effects.css" rel="stylesheet" />
+<link href="~/Content/uploadForm.css" rel="stylesheet" />
+
+<div class="apartment_wrapper">
+    @foreach (var item in Model)
+    {
+        <div class="accom_form">
+            <div class="span3 property-item property-for-rent ">
+
+                <div class="box effect5 ">
+                    <div class="view view-first">
+                        <div class="info-1">
+                            <div class="for-rent">
+                                @Html.DisplayFor(modelItem => item.RentSale)
+                            </div>
+
+                            <div class="price">
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </div>
+                        </div>
+
+                        @if (item.Images.Any(f => f.FileType == RentMe.Models.Enums.FileType.Avatar))
+                        {
+                            <img alt="" src="~/File?id=@item.Images.First(f => f.FileType == RentMe.Models.Enums.FileType.Avatar).ImageId" class="img-hover" style="display: inline;">@*@Html.DisplayFor(modelItem => item.ImgUrl)*@
+                        }
+                    </div>
+                    <div class="info">
+                        <h4>@Html.DisplayFor(modelItem => item.StreetAddress)</h4>
+                        @Html.DisplayFor(modelItem => item.City), @Html.DisplayFor(modelItem => item.PostalCode)
+                        <div class="features">
+                            <span class="area">@Html.DisplayFor(modelItem => item.Types)</span>
+                            <span class="bed">@Html.ActionLink(@item.Name, "Details", new { id = item.Id })</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    }
+
+</div>
